@@ -11,20 +11,20 @@ const express      = require('express'),
       jquery       = require('jquery'),
       app          = express();
 
-const viewPlayersDataservices = require('./data_services/viewPlayersDataService');
+const ViewPlayersDataservice = require('./data_services/viewPlayersDataService');
 const viewPlayers = require('./routes/viewPlayers');
 
 const dbOptions = {
   host      : 'localhost',
-  user      : 'admin',
-  password  : 'password',
+  user      : 'root',
+  password  : '2197832',
   port      : 3306,
   database  : 'players'
 };
 
 const serviceSetupCallBack = function(connection){
   return {
-    viewPlayersDataservices : new ViewPlayersDataServices(connection)
+    viewPlayersDataservice : new ViewPlayersDataservice(connection)
 
   }
 };
@@ -39,7 +39,8 @@ app.use(compression());
 app.engine('handlebars', exhbs({defaultLayout : 'main'}));
 app.set('view engine', 'handlebars');
 
-//app.get("showPlayers", viewPlayers.showPlayers);
+app.get('/view-Players', viewPlayers.show);
+
 
 
 app.get("/", function(req, res){
