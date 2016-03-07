@@ -11,8 +11,17 @@ const express      = require('express'),
       jquery       = require('jquery'),
       app          = express();
 
+
 const ViewPlayersDataservice = require('./data_services/viewPlayersDataService');
+const AddPlayersDataService  = require('./data_services/addPlayersDataService');
+
+
+
 const viewPlayers = require('./routes/viewPlayers');
+const addPlayers  = require('./routes/addPlayers');
+
+
+
 
 const dbOptions = {
   host      : 'localhost',
@@ -24,8 +33,8 @@ const dbOptions = {
 
 const serviceSetupCallBack = function(connection){
   return {
-    viewPlayersDataservice : new ViewPlayersDataservice(connection)
-
+    viewPlayersDataservice : new ViewPlayersDataservice(connection),
+    addPlayersDataService  : new AddPlayersDataService(connection)
   }
 };
 
@@ -40,6 +49,8 @@ app.engine('handlebars', exhbs({defaultLayout : 'main'}));
 app.set('view engine', 'handlebars');
 
 app.get('/view-Players', viewPlayers.show);
+app.get('/add-Players', addPlayers.show);
+app.post('/add-Players', addPlayers.add);
 
 
 

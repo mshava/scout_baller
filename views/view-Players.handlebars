@@ -1,8 +1,10 @@
 <h2>View players</h2>
+<div class="border">
 <table class="table-responsive">
+  <table class="table">
   <thead>
     <tr>
-      <th>footballer:</th>
+      <th>Footballer</th>
       <th>Age</th>
       <th>Gender</th>
       <th>Position</th>
@@ -10,13 +12,14 @@
       <th>Matches</th>
       <th>Won</th>
       <th>Lost</th>
-      <th>Leagues</th>
+      <th>Leagues titles</th>
       <th>Cups</th>
       <th>address</th>
     </tr>
   </thead>
   <tbody>
   {{#each players}}
+
       <tr>
         <td>{{name}}</td>
         <td>{{age}}</td>
@@ -30,6 +33,9 @@
         <td>{{tonaments}}</td>
         <td>{{address}}</td>
     </tr>
+
   {{/each}}
   </tbody>
 </table>
+</table>
+</div>
